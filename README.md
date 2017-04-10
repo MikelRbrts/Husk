@@ -22,7 +22,7 @@ Note: It does require administrative access to write to the HKLM registry locati
 
 Portable Application - Does not require installation. 
 
-### ToDo
+## ToDo
 
 * Add more explorer launch locations.
 * Add logging.
@@ -34,7 +34,7 @@ Portable Application - Does not require installation.
 
 ## Authors
 
-* **Michael Roberts** - [PurpleBooth](https://github.com/MikelRbrts)
+* **Michael Roberts** - [GitHub/MikelRbrts](https://github.com/MikelRbrts)
 
 ## License
 
