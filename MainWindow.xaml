@@ -1,0 +1,85 @@
+<Window x:Class="Husk.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:local="clr-namespace:Husk" mc:Ignorable="d"
+        Title="Husk - Shell Configurator" Height="573.808" Width="431"
+        Loaded="HuskedUp" Icon="Assets/husk_128.png" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+
+    <StackPanel>
+
+        <!-- Top Menu -->
+        <Menu Width="Auto" Height="20" DockPanel.Dock="Top" VerticalAlignment="Center">
+            <MenuItem Header="_File">
+                <MenuItem Header="Exit" Click="menuExit"/>
+            </MenuItem>
+            <MenuItem Header="_Actions">
+                <MenuItem Header="Run System Shell" Click="menuRunSystemShell"/>
+                <MenuItem Header="Run User Shell" Click="menuRunUserShell"/>
+                <Separator />
+                <MenuItem Header="File Explorer" Click="menuFileExplorer"/>
+                <MenuItem Header="Task Manager" Click="menuTaskManager"/>
+                <MenuItem Header="Log Off" Click="menuLogOff"/>
+                <MenuItem Header="Restart" Click="menuRestart"/>
+            </MenuItem>
+            <MenuItem Header="_Help">
+                <MenuItem Header="User Guide" Click="menuUserGuide"/>
+                <MenuItem Header="Website" Click="menuWebsite"/>
+                <MenuItem Header="About" Click="menuAbout"/>
+            </MenuItem>
+        </Menu>
+        
+        <!-- Main GUI -->
+        <Grid Margin="0" Height="521">
+            <TextBlock HorizontalAlignment="Left" Margin="8,8,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="120" Width="302"><Run Text="Husk is a utility designed to help users quickly change their Shell environment. "/><LineBreak/><Run/><LineBreak/><Run FontStyle="Italic" Text="- Change Shell for all users or current user."/><LineBreak/><Run FontStyle="Italic" Text="- Use quotes when necessary."/><LineBreak/><Run FontStyle="Italic" Text="- All changes require a reboot or log off."/><LineBreak/><Run FontStyle="Italic" Text="- Press reset to set back to default. User erases entry."/><LineBreak/><Run/></TextBlock>
+            <Image Source="Assets/husk_64.png" HorizontalAlignment="Left" Height="80" Margin="344,18,0,0" VerticalAlignment="Top" Width="63"/>
+            <TextBlock HorizontalAlignment="Left" Margin="344,102,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" Width="63" FontWeight="Bold"><Run Text="Hus"/><Run Text="k"/><Run FontWeight="Normal" Text="  "/><Run FontWeight="Normal" FontStyle="Italic" Text="v1.0"/></TextBlock>
+            <TextBlock HorizontalAlignment="Left" Margin="167,153,0,0" TextWrapping="Wrap" Text="Current Shell" VerticalAlignment="Top" FontSize="18" Height="24" Width="103"/>
+            <TextBlock HorizontalAlignment="Left" Margin="8,193,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="25" Width="41" RenderTransformOrigin="0.541,-2.582"><Run FontWeight="Bold" Text="System"/></TextBlock>
+            <Label x:Name="currentSystemShellLabel" MouseDoubleClick="currentSystemShellMessage" Background="#e8e8e8" HorizontalAlignment="Left" Margin="58,193,0,0" VerticalAlignment="Top" FontStyle="Italic" Width="349" Height="25"/>
+            <TextBlock HorizontalAlignment="Left" Margin="8,227,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="25" Width="41"><Run FontWeight="Bold" Text="User"/></TextBlock>
+            <Label x:Name="currentUserShellLabel" MouseDoubleClick="currentUserShellMessage" Background="#e8e8e8" HorizontalAlignment="Left" Margin="58,227,0,0" VerticalAlignment="Top" FontStyle="Italic" Width="349" Height="25"/>
+            <TextBlock HorizontalAlignment="Left" Margin="156,255,0,0" TextWrapping="Wrap" Text="Change Shell" VerticalAlignment="Top" FontSize="18" Height="24" Width="114"/>
+            <TextBlock HorizontalAlignment="Left" Margin="8,295,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="41"><Run FontWeight="Bold" Text="System"/></TextBlock>
+            <TextBox x:Name="newSystemShell" HorizontalAlignment="Left" Margin="58,295,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="281" TextChanged="newSystemShell_TextChanged"/>
+            <Button x:Name="newSystemShellResetBTN" HorizontalAlignment="Left" Margin="344,295,0,0" VerticalAlignment="Top" Width="29" Height="20" Click="newSystemShellResetBTN_Click">
+                <StackPanel>
+                    <Image Source="/Assets/delete.png" Width="16" Height="16" />
+                </StackPanel>
+            </Button>
+            <Button x:Name="newSystemShellBrowseBTN" HorizontalAlignment="Left" Margin="378,295,0,0" VerticalAlignment="Top" Width="29" Height="20" Click="newSystemShellBrowseBTN_Click">
+                <StackPanel>
+                    <Image Source="/Assets/folder_explore.png" Height="16" Width="16" />
+                </StackPanel>
+            </Button>
+            <TextBlock HorizontalAlignment="Left" Margin="8,320,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="56"><Run FontWeight="Bold" Text="Attributes"/></TextBlock>
+            <TextBox x:Name="newSystemShellAttributes" HorizontalAlignment="Left" Margin="69,320,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="338" TextChanged="newSystemShellAttributes_TextChanged"/>
+            <Label x:Name="newSystemShellStringLabel" MouseDoubleClick="newSystemShellMessage" Background="#e8e8e8" HorizontalAlignment="Left" Margin="10,346,0,0" VerticalAlignment="Top" Width="397" Height="25" FontStyle="Italic"/>
+            <TextBlock HorizontalAlignment="Left" Margin="8,380,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="41"><Run FontWeight="Bold" Text="User"/></TextBlock>
+            <TextBox x:Name="newUserShell" HorizontalAlignment="Left" Margin="58,380,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="281" TextChanged="newUserShell_TextChanged"/>
+            <Button x:Name="newUserShellResetBTN" HorizontalAlignment="Left" Margin="344,380,0,0" VerticalAlignment="Top" Width="29" Height="20" Click="newUserShellResetBTN_Click">
+                <StackPanel>
+                    <Image Source="Assets/delete.png" Width="16" Height="16" />
+                </StackPanel>
+            </Button>
+            <Button x:Name="newUserShellBrowseBTN" HorizontalAlignment="Left" Margin="378,380,0,0" VerticalAlignment="Top" Width="29" Height="20" Click="newUserShellBrowseBTN_Click">
+                <StackPanel>
+                    <Image Source="Assets/folder_explore.png" Height="16" Width="16" />
+                </StackPanel>
+            </Button>
+            <TextBlock HorizontalAlignment="Left" Margin="8,405,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="56"><Run FontWeight="Bold" Text="Attributes"/></TextBlock>
+            <TextBox x:Name="newUserShellAttributes" HorizontalAlignment="Left" Margin="69,405,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="338" TextChanged="newUserShellAttributes_TextChanged"/>
+            <Label x:Name="newUserShellStringLabel" MouseDoubleClick="newUserShellMessage" Background="#e8e8e8" HorizontalAlignment="Left" Margin="10,431,0,0" VerticalAlignment="Top" Width="397" Height="25" FontStyle="Italic"/>
+            <Button x:Name="saveButton" HorizontalAlignment="Left" Margin="58,464,0,0" VerticalAlignment="Top" Width="102" Height="43" Click="saveClick">
+                <StackPanel>
+                    <Image Source="/Assets/accept.png" Height="16" Width="16" />
+                    <TextBlock><Run Text="Save"/></TextBlock>
+                </StackPanel>
+            </Button>
+            <Button x:Name="cancelButton" HorizontalAlignment="Left" Margin="256,464,0,0" VerticalAlignment="Top" Width="102" Height="43" Click="cancelClick">
+                <StackPanel>
+                    <Image Source="/Assets/cancel.png" Height="16" Width="16"/>
+                    <TextBlock><Run Text="Cancel"/></TextBlock>
+                </StackPanel>
+            </Button>
+        </Grid>
+    </StackPanel>
+</Window>
